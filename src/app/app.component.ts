@@ -42,7 +42,6 @@ export class AppComponent {
   delete(){
     // TODO modal bootstrap and name employee
     if(confirm('Are you sure you want to delete this employee?')){
-      // TODO delete en cada item
       // actualizamos el array sin el seleccionado
       this.employeeArray = this.employeeArray.filter( employee => employee != this.selectedEmployee);
       this.selectedEmployee = new Employee();
