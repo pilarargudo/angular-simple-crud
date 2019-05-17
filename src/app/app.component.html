@@ -9,8 +9,10 @@
     <div class="col-md-8 mt-4">
       <ul class="list-group">
         <li class="list-group-item list-group-item-action" 
-        *ngFor="let employee of employeeArray">
-        <span class="badge badge-primary">
+          *ngFor="let employee of employeeArray"
+          (click)="openForEdit(employee)"
+          [class.active]="employee == selectedEmployee">
+        <span class="badge badge-primary" [class.badge-secondary]="employee == selectedEmployee">
             {{ employee.id }}
         </span>
           {{ employee.name }} - {{ employee.country }}
@@ -28,7 +30,9 @@
           <div class="form-group">
               <input type="text" [(ngModel)]="selectedEmployee.country"
                      class="form-control" placeholder="Insert a country">
-            </div>
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary">Submit</button>
+          <button *ngIf="selectedEmployee.id !== 0" (click)="delete()" class="btn btn-danger">Delete</button>
         </div>
       </div>
     </div>

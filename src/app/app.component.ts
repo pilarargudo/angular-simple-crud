@@ -20,7 +20,33 @@ export class AppComponent {
   // ngModel directive
   // variable propiedad de la clase de tipo Employee
   selectedEmployee: Employee = new Employee();
-  
-  // method
+
+  addOrEdit(){
+    // si no hay ninguno seleccionado
+    if(this.selectedEmployee.id === 0){
+      // generamos nuevo id
+      this.selectedEmployee.id = this.employeeArray.length + 1;
+      // lo guardamos como nuevo con selectedEmployee
+      this.employeeArray.push(this.selectedEmployee);
+    } 
+    // generamos nuevo y limpiamos input
+    this.selectedEmployee = new Employee();
+  }
+
+  // le pasamos un employee de tipo Employee
+  openForEdit(employee: Employee){
+    // TODO deselect!
+    this.selectedEmployee = employee;
+  }
+
+  delete(){
+    // TODO modal bootstrap and name employee
+    if(confirm('Are you sure you want to delete this employee?')){
+      // TODO delete en cada item
+      // actualizamos el array sin el seleccionado
+      this.employeeArray = this.employeeArray.filter( employee => employee != this.selectedEmployee);
+      this.selectedEmployee = new Employee();
+    }
+  }
 
 }
